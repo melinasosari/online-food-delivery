@@ -1,0 +1,41 @@
+{% load static %}
+{% include 'base.html' %}
+
+
+{% block style %}
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    
+{% endblock style %}
+
+
+{% block content %}
+    <section>
+        <div class='circle'></div>
+        <header>
+            <a><img src="{% static 'images/logo4.png' %}" class='logo'></a>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'food_list' %}">Menu</a></li>
+                <li><a href="{% url 'cart_detail' %}"></a></li>
+            </ul>
+        </header>
+        <div class="content">
+            <div class='textBox'>
+                <h2>Online Food <span>Delivery</span></h2>
+                <p>Order food with your smartphone where ever you are.
+                    from 8 a.m. to 12 a.m. , we will deliver to your door as soon as possible. Enjoy!
+                </p>
+                <a href="{% url 'food_list' %}">See Menu</a>
+            </div>
+            <div class='img-box'>
+                <img src="{% static 'images/bg-home.png' %}" class='img'>
+            </div>
+        </div>
+       
+       
+        
+    </section>
+{% endblock content %}
+    
+    

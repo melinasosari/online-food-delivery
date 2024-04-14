@@ -1,0 +1,66 @@
+{% load static %}
+{% include 'base.html' %}
+
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/order_create.css' %}">
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+{% endblock style %}
+
+
+{% block content %}
+
+    
+    
+
+<div class="container">
+<header>
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'food_list' %}">Menu</a></li>
+        <li><a href="{% url 'cart_detail' %}"><i class="fas fa-shopping-cart" style="color:black;font-size:22px;"><span class="badge badge-primary">{{cart|length}}</span></i></a></li>
+    </ul>
+</header>
+    <form method="POST">
+       {% csrf_token %}
+        <div class="row">
+            <div class="col">
+                <h3 class='title'>Checkout</h3>
+                <div class="inputBox">
+                    <span>First Name:</span>
+                    <input type="text" name="first_name" placeholder="Enter your first name here...">
+                </div>
+                <div class="inputBox">
+                    <span>Email:</span>
+                    <input type="text" name="email" placeholder="Enter your email here...">
+                </div>
+                <div class="inputBox">
+                    <span>Phone Number:</span>
+                    <input type="text" name="phone_number" placeholder="Enter your phone number here...">
+                </div>
+            </div>
+        
+            <div class="col">
+                <h3 class='title'>📲</h3>
+                <div class="inputBox">
+                   <span>Last Name:</span>
+                   <input type="text" name="last_name" placeholder="Enter your last name here...">
+                </div>
+                <div class="inputBox">
+                    <span>Address:</span>
+                    <input type="text" name="address" placeholder="Enter your address here...">
+                </div>
+                <div class="flex">
+                    <div class="inputBox">
+                        <span>Postal Code:</span>
+                        <input type="text" name="postal_code" placeholder="your postal code" >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="Order Now!" class="submit-btn">
+    </form>
+</div>
+{% endblock content %}
+    
+    

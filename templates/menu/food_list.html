@@ -1,0 +1,58 @@
+{% load static %}
+{% include 'base.html' %}
+
+
+{% block style %}
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+    <link rel='stylesheet href="https://fonts.googleapis.com">
+    <link rel='stylesheet' href="{% static 'css/food_list.css' %}">
+    
+{% endblock style %}
+
+
+{% block content %}
+<header>
+    <a><img src="{% static 'images/logo4.png' %}" class='logo'></a>
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li>
+            <a class="{% if not category %}active{% endif %}" href="{% url 'food_list' %}">Menu</a>
+            <ul class='dropdown'>
+                {% for cat in categories %}
+                   <li><a class="{% if cat == category %}active{% endif %}" href="{{cat.get_absolute_url}}">{{cat.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li><a href="{% url 'cart_detail' %}"><i class="fas fa-shopping-cart" style="color:white;font-size:22px;"><span class="badge badge-primary">{{cart|length}}</span></i></a></li>
+    </ul>
+</header>
+<div class="menu">
+    <div class="heading">
+        <h3>&mdash; MENU &mdash;</h3>
+    </div>
+        {% for food in foods %}
+            <div class="food-items">
+                <img src="{{food.image.url}}" alt="">
+                <div class="details">
+                    <div class="details-sub">
+                        <h5>{{food.name}}</h5>
+                        <h5 class="price">{{food.price}} T</h5>
+                    </div>
+                    <p>{{food.ingredients}}</p>
+                    <form action="{% url 'cart_add' food.id %}" method="POST">
+                        {{form}}
+                        {% csrf_token %}
+                        <button  type='submit'>Add To Cart</button>
+                        
+                    </form>
+                    
+                    
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+    
+    
